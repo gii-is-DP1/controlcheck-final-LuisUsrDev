@@ -2,16 +2,24 @@ package org.springframework.samples.petclinic.care;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class CareService {    
 
+    @Autowired
+    CareProvisionRepository careProvisionRepository;
+
     public List<Care> getAllCares(){
-        return null;
+        List<Care> cares = careProvisionRepository.findAllCares();
+        return cares;
     }
 
     public List<Care> getAllCompatibleCares(String petTypeName){
-        return null;
+        List<Care> cares = careProvisionRepository.findCompatibleCares(petTypeName);
+        return cares;
     }
 
     public Care getCare(String careName) {
@@ -20,7 +28,7 @@ public class CareService {
 
     
     public CareProvision save(CareProvision p) throws NonCompatibleCaresException, UnfeasibleCareException {
-        return null;   
+        return null;
     }
 
     public List<CareProvision> getAllCaresProvided(){
@@ -32,4 +40,8 @@ public class CareService {
 
     }
     
+    public List<CareProvision> getAllCareProvision() {
+        List<CareProvision> careProvisions = careProvisionRepository.findAllCareProvision();
+        return careProvisions;
+    }
 }
